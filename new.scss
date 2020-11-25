@@ -1,0 +1,96 @@
+.vpb {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    counter-reset: progress-counter;
+
+    &_items {
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 40px;
+        position: relative;
+
+        &.active {
+            &:before {
+                background-color: #cb4814;
+                content: "" !important;
+            }
+
+            .vpb_items__count {
+                background-color: #cb4814;
+            }
+
+            .vpb_items__heading {
+                color: #333333;
+            }
+        }
+
+        &.completed {
+            &:before {
+                content: "" !important;
+            }
+
+            &:before,
+            .vpb_items__count {
+                background-color: #1c8150;
+            }
+
+            &:after {
+                content: 'L';
+                -webkit-transform: scaleX(-1) rotate(-35deg);
+                transform: scaleX(-1) rotate(-45deg);
+                font-weight: bold;
+                font-size: 20px;
+                top: 3px;
+                left: 14px;
+            }
+        }
+
+        &:last-child {
+            &::before {
+                content: none;
+            }
+        }
+
+        &:before {
+            content: "";
+            width: 2px;
+            height: calc(100% - 55px);
+            background: #cccccc;
+            display: block;
+            left: 20px;
+            position: absolute;
+            top: 45px;
+        }
+
+        &:after {
+            counter-increment: progress-counter;
+            content: " "counter(progress-counter) "";
+            position: absolute;
+            left: 15px;
+            color: #fff;
+            top: 8px;
+        }
+
+        &__count {
+            width: 38px;
+            height: 38px;
+            background-color: gray;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #fff;
+            margin-right: 12px;
+        }
+
+        &__content {
+            margin-top: 5px;
+        }
+
+        &__heading {
+            color: #666666;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    }
+}
